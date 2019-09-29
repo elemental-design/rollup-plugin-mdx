@@ -1,0 +1,54 @@
+{
+  "name": "rollup-plugin-mdx",
+  "version": "0.0.1",
+  "description": "Rollup plugin for mdx.js",
+  "main": "dist/rollup-plugin-mdx.cjs.js",
+  "module": "dist/rollup-plugin-mdx.es.js",
+  "jsnext:main": "dist/rollup-plugin-mdx.es.js",
+  "scripts": {
+    "test": "ava",
+    "build": "rollup -c"
+  },
+  "ava": {
+    "files": [
+      "test/**/*.js",
+      "!test/babel.config.js"
+    ],
+    "modules": false
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elemental-design/rollup-plugin-mdx.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/elemental-design/rollup-plugin-mdx/issues"
+  },
+  "homepage": "https://github.com/elemental-design/rollup-plugin-mdx#readme",
+  "devDependencies": {
+    "@babel/core": "^7.6.2",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/preset-env": "^7.6.2",
+    "@babel/preset-react": "^7.0.0",
+    "ava": "^2.4.0",
+    "babel-jest": "^24.9.0",
+    "jest": "^24.9.0",
+    "react-test-renderer": "^16.10.1",
+    "regenerator-runtime": "^0.13.3",
+    "rollup": "^1.21.4",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-buble": "^0.19.8",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "source-map-support": "^0.5.13"
+  },
+  "dependencies": {
+    "@mdx-js/mdx": "^1.5.0",
+    "@mdx-js/react": "^1.5.0",
+    "react": "^16.10.1",
+    "react-dom": "^16.10.1",
+    "rollup-pluginutils": "^2.8.2"
+  }
+}
