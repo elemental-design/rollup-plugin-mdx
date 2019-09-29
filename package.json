@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-mdx",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Rollup plugin for mdx.js",
   "main": "dist/rollup-plugin-mdx.cjs.js",
   "module": "dist/rollup-plugin-mdx.es.js",
