@@ -13,5 +13,5 @@ export default {
     // runtimeHelpers: true,
     exclude: 'node_modules/**',
   })],
-  external
+  external: [...external, '@babel/core']
 };

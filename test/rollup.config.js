@@ -19,7 +19,9 @@ require('source-map-support').install();
     // ],
     // output: { format:}
     plugins: [
-      mdx(),
+      mdx({
+        extensions: ['.md', '.mdx'],
+      }),
       babel({
         exclude: 'node_modules/**',
         extensions: ['.mjs', '.js', '.jsx', '.md'],
@@ -38,8 +40,11 @@ require('source-map-support').install();
     ],
     external
   });
+  await bundle.write({
+    file: 'dist/basic.es.js', format: 'es', sourcemap: true,
+    // { file: 'dist/basic.es.js', format: 'es', sourcemap: true }
+  });
+  // const code = await bundle.generate({ format: 'es' });
   
-  const code = bundle.generate({ format: 'es' });
-  
-  console.log(JSON.stringify(code, null, 2));
+  // console.log(JSON.stringify(code, null, 2));
 })();

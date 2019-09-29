@@ -2,6 +2,21 @@
 
 exports[`Link changes the class when hovered 1`] = `
 <div>
-  test
+  <div>
+    <h1>
+      Test Title
+    </h1>
+    <p>
+      Test document with 
+      <strong>
+        bold
+      </strong>
+       and 
+      <em>
+        italics
+      </em>
+       text.
+    </p>
+  </div>
 </div>
 `;

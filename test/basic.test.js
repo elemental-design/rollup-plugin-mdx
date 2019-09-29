@@ -2,12 +2,26 @@ import React from 'react';
 
 import renderer from 'react-test-renderer';
 
-require('source-map-support').install();
+import { BasicContainer } from './dist/basic.es';
 
-process.chdir(__dirname);
+// require('source-map-support').install();
+
+// process.chdir(__dirname);
 
 test('Link changes the class when hovered', async () => {
-  const bundle = await rollup
+  
+
+  const component = renderer.create(
+    <div>
+      <BasicContainer />
+    </div>,
+  );
+  let tree = component.toJSON();
+  expect(tree).toMatchSnapshot();
+});
+
+/*
+const bundle = await rollup
     .rollup({
       input: 'samples/basic.js',
       plugins: [
@@ -26,12 +40,4 @@ test('Link changes the class when hovered', async () => {
 
   fn(exports);
   const { BasicContainer } = exports;
-
-  const component = renderer.create(
-    <div>
-      <BasicContainer />
-    </div>,
-  );
-  let tree = component.toJSON();
-  expect(tree).toMatchSnapshot();
-});
+*/
