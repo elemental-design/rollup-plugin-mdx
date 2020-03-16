@@ -1,3 +1,4 @@
+import path from 'path';
 import { createFilter } from 'rollup-pluginutils';
 import mdx from '@mdx-js/mdx';
 import * as babel from '@babel/core';
