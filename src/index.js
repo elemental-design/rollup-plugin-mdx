@@ -1,3 +1,4 @@
+import path from 'path';
 import { createFilter } from 'rollup-pluginutils';
 import mdx from '@mdx-js/mdx';
 import * as babel from '@babel/core';
@@ -22,7 +23,11 @@ export default function md(options = {}) {
         return null;
       }
 
-      return mdx(content, options).then((result) => {
+      const opts = Object.assign({}, {
+        filepath: path.resolve(filename)
+      }, options);
+
+      return mdx(content, opts).then((result) => {
         const code = `${renderer}\n${result}`;
 
         const { babelOptions = {} } = options;
