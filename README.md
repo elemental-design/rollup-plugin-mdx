@@ -1,6 +1,10 @@
 # rollup-plugin-mdx
 Import `mdx`/`md` markdown files into your app. Runs `("@babel/core").transformSync(code)` on the output.
 
+[![npm](https://img.shields.io/npm/v/rollup-plugin-mdx.svg)](https://www.npmjs.com/package/rollup-plugin-mdx)
+[![npm](https://img.shields.io/npm/dt/rollup-plugin-mdx.svg)](https://www.npmjs.com/package/rollup-plugin-mdx)
+
+
 ## Installation
 
 ```sh
