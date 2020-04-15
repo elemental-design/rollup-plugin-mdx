@@ -1,5 +1,7 @@
+import path from 'path';
 import { createFilter } from 'rollup-pluginutils';
 import mdx from '@mdx-js/mdx';
+import { loadPartialConfig, transformSync } from '@babel/core';
 
 const ext = /\.md$|\.mdx$/;
 const DEFAULT_RENDERER = `
@@ -14,39 +16,28 @@ function md(options = {}) {
   return {
     name: 'mdx',
 
-    transform(content, id) {
-      if (!ext.test(id) || !filter(id)) {
+    transform(content, filename) {
+      if (!ext.test(filename) || !filter(filename)) {
         return null;
       }
 
-      return mdx(content, options).then(result => {
-        const code = `${renderer}\n${result}`; //         const code = `
-        // import React from 'react'
-        // import { mdx } from '@mdx-js/react'
-        // /* @jsx mdx */
-        // const makeShortcode = name => function MDXDefaultShortcode(props) {
-        //     console.warn("Component " + name + " was not imported, exported, or provided by MDXProvider as global scope")
-        //   return <div {...props}/>
-        // };
-        // const layoutProps = {
-        // };
-        // const MDXLayout = "wrapper"
-        // export default function MDXContent({
-        //     components,
-        //   ...props
-        // }) {
-        //     return <MDXLayout {...layoutProps} {...props} components={components} mdxType="MDXLayout">
-        //     <h1>{\`Test Title\`}</h1>
-        //     <p>{\`Test document with \`}<strong parentName=\"p\">{\`bold\`}</strong>{\` and \`}<em parentName="p">{\`italics\`}</em>{\` text.\`}</p>
-        //     </MDXLayout>;
-        // }
-        // ;
-        // MDXContent.isMDXComponent = true;
-        //         `;
-        // console.log(JSON.stringify(code, null, 2));
-
+      const opts = Object.assign({}, {
+        filepath: path.resolve(filename)
+      }, options);
+      return mdx(content, opts).then(result => {
+        const code = `${renderer}\n${result}`;
+        const {
+          babelOptions = {}
+        } = options;
+        const config = loadPartialConfig({ ...babelOptions,
+          filename
+        });
+        const transformOptions = config.options;
+        const {
+          code: transpiled
+        } = transformSync(code, transformOptions);
         return {
-          code,
+          code: transpiled,
           map: {
             mappings: ''
           }
